@@ -27,7 +27,7 @@ curl --request GET http://localhost:8080/
 
 docker build -t myimage .
 
-docker run --name myContainer1 --env-file=.env_file -p 80:8080 myimage
+docker run --name myContainer2 --env-file=.env_file -p 80:8080 myimage
 
 curl --request GET 'http://localhost:80/'
 
