@@ -25,9 +25,11 @@ curl --request GET http://localhost:8080/
 
 ### build docker image / create and run container
 
+docker rm $(docker ps -a -q)
+
 docker build -t myimage .
 
-docker run --name myContainer2 --env-file=.env_file -p 80:8080 myimage
+docker run --name myContainer --env-file=.env_file -p 80:8080 myimage
 
 curl --request GET 'http://localhost:80/'
 
@@ -54,4 +56,27 @@ kubectl get -n kube-system configmap/aws-auth -o yaml > aws-auth-patch.yml
 kubectl patch configmap/aws-auth -n kube-system --patch "$(cat aws-auth-patch.yml)"
 
 kubectl get nodes
+
+
+
+
+
+aws ssm put-parameter --name JWT_SECRET --overwrite --value "myjwtsecret" --type SecureString
+## Verify
+aws ssm get-parameter --name JWT_SECRET
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

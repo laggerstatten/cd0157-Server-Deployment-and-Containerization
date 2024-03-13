@@ -120,6 +120,7 @@ Resources:
           import json
           import boto3
           from botocore.vendored import requests
+          import cfnresponse
           def handler(event, context):
             response = {
               'Status': 'SUCCESS',
@@ -130,6 +131,8 @@ Resources:
               'LogicalResourceId': event['LogicalResourceId'],
               'Data': {"Message": "Resource creation successful!"},
             }
+
+            cfnresponse.send(event, context, cfnresponse.SUCCESS, response, context.log_stream_name)
 
             client = boto3.client('iam')
             try:
@@ -158,10 +161,9 @@ Resources:
             headers = {'content-type': '', "content-length": str(len(response_body)) }
             put_response = requests.put(event['ResponseURL'], headers=headers, data=response_body)
             return response
-
       Handler: index.handler
       Role: !GetAtt CustomResourceLambdaExecutionRole.Arn
-      Runtime: python3.7
+      Runtime: python3.8
       Timeout: 300
 
   CustomResourceLambdaExecutionRole:
