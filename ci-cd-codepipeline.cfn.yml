@@ -161,9 +161,10 @@ Resources:
             headers = {'content-type': '', "content-length": str(len(response_body)) }
             put_response = requests.put(event['ResponseURL'], headers=headers, data=response_body)
             return response
+
       Handler: index.handler
       Role: !GetAtt CustomResourceLambdaExecutionRole.Arn
-      Runtime: python3.8
+      Runtime: python3.12
       Timeout: 300
 
   CustomResourceLambdaExecutionRole:
