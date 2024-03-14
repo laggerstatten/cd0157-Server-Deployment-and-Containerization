@@ -64,6 +64,8 @@ kubectl get nodes
 
 
 aws ssm put-parameter --name JWT_SECRET --overwrite --value "myjwtsecret" --type SecureString
+
+aws ssm put-parameter --name JWT_SECRET --overwrite --value "myjwtsecret" --type SecureString --region us-east-2
 ## Verify
 aws ssm get-parameter --name JWT_SECRET
 
