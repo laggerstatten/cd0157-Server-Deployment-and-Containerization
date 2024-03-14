@@ -40,6 +40,8 @@ eksctl create cluster --name simple-jwt-api --nodes=2 --version=1.23 --instance-
 
 kubectl get nodes
 
+#### to delete
+eksctl delete cluster simple-jwt-api  --region=us-east-2
 
 
 ### create IAM Role for CodeBuild
